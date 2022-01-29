@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float speed;
     Rigidbody2D rb;
     Vector2 movement;
-    public float speed;
+    SpriteRenderer sprRend;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprRend = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        
+    }
+    void FixedUpdate()
     {
         Move();
     }
@@ -22,5 +27,17 @@ public class PlayerMovement : MonoBehaviour
         movement = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         movement.Normalize();
         rb.velocity = movement * speed * Time.deltaTime;
+    }
+    void FlipSpriteOnMousePosition()
+    {
+        var mousePosX = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(transform.position.x > mousePosX.x)
+        {
+            sprRend.flipX = true;
+        }
+        else
+        {
+            sprRend.flipX = false;
+        }
     }
 }
