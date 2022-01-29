@@ -25,7 +25,7 @@ public class PlayerKeyBindings : MonoBehaviour
     void Start()
     {
         interactKey = KeyCode.E;
-        flashLightKey = KeyCode.F;
+        flashLightKey = KeyCode.Mouse0;
     }
 
     // Update is called once per frame
